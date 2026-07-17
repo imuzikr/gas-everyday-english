@@ -23,7 +23,8 @@ def generate_content():
     
     prompt = """
     다음 조건에 맞춰 일상 생활영어 대화문 3가지를 만들어주세요:
-    1. 상황: 부모와 초등학생 자녀가 겪는 일상 상황 3가지
+    1. 상황: 부모와 초등학생 자녀가 겪는 일상 상황 3가지 
+       (※ 매우 중요: 단순한 기상이나 등교 인사 대신 식사 편식, 친구와의 다툼, 심부름, 주말 나들이 계획, 날씨에 따른 옷차림, 감정 표현 등 매번 겹치지 않는 구체적이고 새로운 상황을 설정해 주세요.)
     2. 대화: 상황당 자주 쓰이는 2~3턴의 대화 (영어 및 한국어)
     3. 추가 학습: 각 상황의 핵심 포인트(Key Point) 1개와 유사 표현(Similar Expressions) 2개
     
@@ -42,12 +43,13 @@ def generate_content():
     }
     """
     
-    payload = {
+  payload = {
         "model": "solar-pro",
         "messages": [
-            {"role": "system", "content": "당신은 친절한 초등영어 선생님입니다. JSON 포맷으로만 응답하세요."},
+            {"role": "system", "content": "당신은 친절한 초등영어 선생님입니다. 매번 창의적이고 중복되지 않는 새로운 대화문을 작성합니다. JSON 포맷으로만 응답하세요."},
             {"role": "user", "content": prompt}
         ],
+        "temperature": 0.8,  # 이 줄을 추가하여 창의성을 높입니다
         "response_format": {"type": "json_object"}
     }
     
